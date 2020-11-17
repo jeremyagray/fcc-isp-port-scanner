@@ -7,14 +7,10 @@ import socket
 
 def scan(addr, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(0.5)
 
     status = sock.connect_ex((addr, port))
     sock.close()
-
-    # if (status == 0):
-    #     print('open:  {}:{}'.format(addr, port))
-    # else:
-    #     print('closed:  {}:{}'.format(addr, port))
 
     return status
 
@@ -56,7 +52,9 @@ def verify_target(target):
 
 
 def get_open_ports(target, port_range, verbose=False):
+    # print('verifying target:  {}'.format(target))
     (ip, host, error) = verify_target(target)
+    # print('verification ip:  {} host:  {} error:  {}'.format(ip, host, error))
 
     if error:
         return error
@@ -64,8 +62,9 @@ def get_open_ports(target, port_range, verbose=False):
     open_ports = []
 
     for port in range(port_range[0], port_range[1] + 1, 1):
-
+        # print('scanning {}:{}'.format(ip, port))
         if (scan(ip, port) == 0):
+            # print('{}:{} open'.format(ip, port))
             open_ports.append(port)
 
     # process based on verbose

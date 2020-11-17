@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from unittest import main
-import port_scanner
+# import port_scanner
 
 # # Called with URL
 # ports = port_scanner.get_open_ports("www.freecodecamp.org", [75,85]) or ''
@@ -14,12 +14,12 @@ import port_scanner
 # Local.
 # ports = port_scanner.get_open_ports("192.168.1.78", [2990, 3010]) or ''
 # print("Open ports:", ports)
-ports = port_scanner.get_open_ports("192.168.1.254", [70, 90]) or ''
-print("Open ports:", ports)
+# ports = port_scanner.get_open_ports("192.168.1.254", [70, 90]) or ''
+# print("Open ports:", ports)
 # ports = port_scanner.get_open_ports("192.168.1.78", [2990, 3010], True) or ''
 # print(ports, '\n')
-ports = port_scanner.get_open_ports("192.168.1.254", [70, 90], True) or ''
-print(ports, '\n')
+# ports = port_scanner.get_open_ports("192.168.1.254", [70, 90], True) or ''
+# print(ports, '\n')
 
 # Verbose called with ip address and no host name returned -- single
 # open port
