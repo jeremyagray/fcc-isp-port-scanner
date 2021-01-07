@@ -45,7 +45,7 @@ If the IP address passed into the `get_open_ports` function is invalid, the func
 
 Write your code in `port_scanner.py`. For development, you can use `main.py` to test your code. Click the "run" button and `main.py` will run.
 
-### Testing 
+### Testing
 
 The unit tests for this project are in `test_module.py`. We imported the tests from `test_module.py` to `main.py` for your convenience. The tests will run automatically whenever you hit the "run" button.
 

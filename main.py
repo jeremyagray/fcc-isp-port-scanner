@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from unittest import main
+
 # import port_scanner
 
 # # Called with URL
@@ -14,7 +15,7 @@ from unittest import main
 # Local.
 # ports = port_scanner.get_open_ports("192.168.1.78", [2990, 3010]) or ''
 # print("Open ports:", ports)
-# ports = port_scanner.get_open_ports("192.168.1.254", [70, 90]) or ''
+# ports = port_scanner.get_open_ports("192.168.1.70", [52210, 53220]) or ''
 # print("Open ports:", ports)
 # ports = port_scanner.get_open_ports("192.168.1.78", [2990, 3010], True) or ''
 # print(ports, '\n')
@@ -39,4 +40,4 @@ from unittest import main
 # ports = port_scanner.get_open_ports("209.216.230.240", [440, 445], False)
 
 # Run unit tests.
-main(module='test_module', exit=False)
+main(module="test_module", exit=False)

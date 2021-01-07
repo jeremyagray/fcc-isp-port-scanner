@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-import common_ports
 import re
 import socket
+
+import common_ports
 
 
 def scan(addr, port):
@@ -20,7 +21,7 @@ def verify_target(target):
     host = None
     ip = None
     error = None
-    match = re.match(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', target)
+    match = re.match(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", target)
 
     if match:
         ip = match.group(0)
@@ -32,21 +33,22 @@ def verify_target(target):
         except socket.gaierror:
             host = None
             ip = None
-            error = 'Error: Invalid IP address'
+            error = "Error: Invalid IP address"
     else:
-        if re.match(target, socket.getfqdn(target)) \
-           or re.match(socket.getfqdn(target), target):
+        if re.match(target, socket.getfqdn(target)) or re.match(
+            socket.getfqdn(target), target
+        ):
             try:
                 host = target
                 ip = socket.gethostbyname_ex(host)[2][0]
             except (socket.herror, socket.gaierror):
                 host = None
                 ip = None
-                error = 'Error: Invalid hostname'
+                error = "Error: Invalid hostname"
         else:
             host = None
             ip = None
-            error = 'Error: Invalid hostname'
+            error = "Error: Invalid hostname"
 
     return (ip, host, error)
 
@@ -63,7 +65,7 @@ def get_open_ports(target, port_range, verbose=False):
 
     for port in range(port_range[0], port_range[1] + 1, 1):
         # print('scanning {}:{}'.format(ip, port))
-        if (scan(ip, port) == 0):
+        if scan(ip, port) == 0:
             # print('{}:{} open'.format(ip, port))
             open_ports.append(port)
 
@@ -72,21 +74,21 @@ def get_open_ports(target, port_range, verbose=False):
         report = []
 
         if host:
-            report.append('Open ports for ' + host + ' (' + ip + ')')
+            report.append("Open ports for " + host + " (" + ip + ")")
         else:
-            report.append('Open ports for ' + ip)
+            report.append("Open ports for " + ip)
 
-        report.append('PORT     SERVICE')
+        report.append("PORT     SERVICE")
 
         for port in open_ports:
             try:
-                report.append('{: <9}{}'
-                              .format(str(port),
-                                      common_ports.ports_and_services[port]))
+                report.append(
+                    "{: <9}{}".format(str(port), common_ports.ports_and_services[port])
+                )
             except KeyError:
-                report.append('{: <9}{}'.format(str(port), str(port)))
+                report.append("{: <9}{}".format(str(port), str(port)))
 
-        return '\n'.join(report)
+        return "\n".join(report)
 
     else:
         return open_ports
